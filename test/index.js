@@ -14,16 +14,15 @@ test('csv-spectrum', function (t) {
   spectrum(function (err, data) {
     t.error(err, 'no error')
 
-    t.plan(data.length + 1)
+    t.plan((data.length - 2) * 2 + 1)
 
     data.forEach(function (datum) {
-
       // skip tests that don't make sense
       if (
         datum.name === 'empty' ||
         datum.name === 'empty_crlf'
       ) {
-        return t.ok(true)
+        return
       }
 
       var options = {}
@@ -37,13 +36,14 @@ test('csv-spectrum', function (t) {
       streamify(input)
         .pipe(csvFormatter(options))
         .pipe(bl(function (err, buf) {
+          t.error(err, 'no error')
           var output = buf.toString()
           var expected = datum.csv.toString()
           // add ending newline to be consistent
           if (!(new RegExp(options.newline + '$').test(expected))) {
             expected = expected + options.newline
           }
-          t.equal(output, expected)
+          t.equal(output, expected, datum.name + ' output equals expected')
         }))
     })
   })

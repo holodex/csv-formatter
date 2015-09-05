@@ -14,8 +14,7 @@ function csvFormatter (options) {
   var headerWritten = false
 
   return through.obj(function (row, enc, cb) {
-    if (!headerWritten)
-    {
+    if (!headerWritten) {
       this.push(formatHeaderRow(options, row))
       headerWritten = true
     }
@@ -54,13 +53,12 @@ function formatRow (options, fields) {
   return line + options.newline
 }
 
-
 function formatField (options, field) {
   var mustBeQuoted =
     field.indexOf('"') !== -1 ||
     field.indexOf(options.separator) !== -1 ||
     field.indexOf(options.newline) !== -1
-  
+
   if (mustBeQuoted) {
     // quote
     //   replace quotes with two quotes
