@@ -1,0 +1,38 @@
+{
+  "name": "csv-formatter",
+  "version": "1.0.0",
+  "description": "streaming CSV formatter",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holodex/csv-formatter.git"
+  },
+  "keywords": [
+    "csv",
+    "tsv",
+    "format",
+    "formatter"
+  ],
+  "author": "ahdinosaur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/holodex/csv-formatter/issues"
+  },
+  "homepage": "https://github.com/holodex/csv-formatter#readme",
+  "dependencies": {
+    "defined": "^1.0.0",
+    "lodash.keys": "^3.1.2",
+    "lodash.pick": "^3.1.0",
+    "lodash.values": "^3.0.0",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "bl": "^1.0.0",
+    "csv-spectrum": "^0.2.0",
+    "stream-array": "^1.1.1",
+    "tape": "^4.2.0"
+  }
+}
