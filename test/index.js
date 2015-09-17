@@ -48,3 +48,19 @@ test('csv-spectrum', function (t) {
     })
   })
 })
+
+test('numberic value test', function (t) {
+  t.plan(1);
+
+  var csv = csvFormatter();
+
+  try {
+    csv.write({
+      test: 1
+    });
+    t.ok(true, "handled number");
+  } catch(e) {
+    t.ok(false, "exception on number");
+  }
+
+});
