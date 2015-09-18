@@ -54,6 +54,10 @@ function formatRow (options, fields) {
 }
 
 function formatField (options, field) {
+  if (typeof field !== 'string') {
+    field = field.toString()
+  }
+
   var mustBeQuoted =
     field.indexOf('"') !== -1 ||
     field.indexOf(options.separator) !== -1 ||
