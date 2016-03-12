@@ -23,14 +23,14 @@ function csvFormatter (options) {
 }
 
 function getOptions (options) {
+  if (Array.isArray(options)) {
+    options = { headers: options }
+  }
+
   options = defined(options, {})
 
   options.separator = defined(options.separator, ',')
   options.newline = defined(options.newline, '\n')
-
-  if (Array.isArray(options)) {
-    options = { headers: options }
-  }
 
   return options
 }
