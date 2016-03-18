@@ -13,24 +13,28 @@ function csvFormatter (options) {
 
   var headerWritten = false
 
-  return through.obj(function (row, enc, cb) {
+  var stream = through.obj(function (row, enc, cb) {
     if (!headerWritten) {
       this.push(formatHeaderRow(options, row))
       headerWritten = true
     }
     cb(null, formatBodyRow(options, row))
   })
+
+  stream.options = options
+
+  return stream
 }
 
 function getOptions (options) {
+  if (Array.isArray(options)) {
+    options = { headers: options }
+  }
+
   options = defined(options, {})
 
   options.separator = defined(options.separator, ',')
   options.newline = defined(options.newline, '\n')
-
-  if (Array.isArray(options)) {
-    options = { headers: options }
-  }
 
   return options
 }
